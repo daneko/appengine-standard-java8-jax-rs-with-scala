@@ -37,6 +37,7 @@ appengine {
         // configure staging for deployment
     }
     deploy {
+        project = 'semiotic-karma-172203'
         version = currentTimeStamp
     }
 }
