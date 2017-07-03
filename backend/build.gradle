@@ -19,8 +19,6 @@ SEVERE: MessageBodyWriter not found for media type=application/json, type=class 
     // https://mvnrepository.com/artifact/com.google.firebase/firebase-admin
     compile 'com.google.firebase:firebase-admin:5.2.0'
 
-
-
     compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
 }
 
