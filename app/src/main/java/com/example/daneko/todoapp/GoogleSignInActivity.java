@@ -42,11 +42,14 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 /**
@@ -80,6 +83,7 @@ public class GoogleSignInActivity extends AppCompatActivity implements
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
+        findViewById(R.id.display_firebase_token_button).setOnClickListener(this);
 
         // [START config_signin]
         // Configure Google Sign In
@@ -207,6 +211,7 @@ public class GoogleSignInActivity extends AppCompatActivity implements
 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+            findViewById(R.id.display_firebase_token_button).setEnabled(true);
 
         } else {
             mStatusTextView.setText(R.string.signed_out);
@@ -214,6 +219,7 @@ public class GoogleSignInActivity extends AppCompatActivity implements
 
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
+            findViewById(R.id.display_firebase_token_button).setEnabled(false);
         }
     }
 
@@ -234,6 +240,26 @@ public class GoogleSignInActivity extends AppCompatActivity implements
             signOut();
         } else if (i == R.id.disconnect_button) {
             revokeAccess();
+        } else if (i == R.id.display_firebase_token_button) {
+            Log.i(TAG, "click display token button");
+            final FirebaseUser currentUser = mAuth.getCurrentUser();
+            if (currentUser != null) {
+                currentUser.getIdToken(false)
+                        .addOnSuccessListener(this, new OnSuccessListener<GetTokenResult>() {
+                            @Override
+                            public void onSuccess(GetTokenResult getTokenResult) {
+                                Log.i(TAG, "token is : " + getTokenResult.getToken());
+                            }
+                        })
+                        .addOnFailureListener(this, new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.e(TAG, "error", e);
+                            }
+                        });
+            } else {
+                Log.w(TAG, "current user is null");
+            }
         }
     }
 

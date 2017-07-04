@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:id="@+id/main_layout"
+              xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/main_layout"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/grey_100"
@@ -17,12 +17,12 @@
         android:orientation="vertical">
 
         <ImageView
-            style="@style/ThemeOverlay.FirebaseIcon"
             android:id="@+id/google_icon"
-            android:contentDescription="@string/desc_firebase_lockup"
-            android:src="@drawable/firebase_lockup_400"
+            style="@style/ThemeOverlay.FirebaseIcon"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/desc_firebase_lockup"
+            android:src="@drawable/firebase_lockup_400"/>
 
         <TextView
             android:id="@+id/title_text"
@@ -30,17 +30,23 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/title_bottom_margin"
             android:text="@string/google_title_text"
-            android:theme="@style/ThemeOverlay.MyTitleText" />
+            android:theme="@style/ThemeOverlay.MyTitleText"/>
 
         <TextView
             android:id="@+id/status"
             style="@style/ThemeOverlay.MyTextDetail"
-            android:text="@string/signed_out" />
+            android:text="@string/signed_out"/>
 
         <TextView
             android:id="@+id/detail"
             style="@style/ThemeOverlay.MyTextDetail"
-            tools:text="Firebase User ID: 123456789abc" />
+            tools:text="Firebase User ID: 123456789abc"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/display_firebase_token_button"
+            style="@style/ThemeOverlay.MyTextDetail"
+            android:enabled="false"
+            android:text="display firebase token for logcat"/>
 
     </LinearLayout>
 
@@ -57,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:visibility="visible"
-            tools:visibility="gone" />
+            tools:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/sign_out_and_disconnect"
@@ -76,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/sign_out"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
+                android:theme="@style/ThemeOverlay.MyDarkButton"/>
 
             <Button
                 android:id="@+id/disconnect_button"
@@ -84,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/disconnect"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
+                android:theme="@style/ThemeOverlay.MyDarkButton"/>
         </LinearLayout>
 
     </RelativeLayout>
