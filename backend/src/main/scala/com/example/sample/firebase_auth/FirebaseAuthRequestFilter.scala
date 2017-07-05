@@ -9,7 +9,6 @@ import javax.ws.rs.core.{HttpHeaders, SecurityContext}
 import javax.ws.rs.ext.Provider
 import javax.ws.rs.{NotAuthorizedException, Priorities}
 
-import WithFirebaseAuth
 import com.google.firebase.auth.{FirebaseAuth, FirebaseToken}
 import com.google.firebase.tasks.Tasks
 
@@ -28,15 +27,13 @@ class FirebaseAuthRequestFilter extends ContainerRequestFilter {
   override def filter(requestContext: ContainerRequestContext): Unit = {
     logger.log(Level.INFO, "call filter")
 
-    Option(requestContext.getHeaderString(HttpHeaders.AUTHORIZATION)).
+    val token = Option(requestContext.getHeaderString(HttpHeaders.AUTHORIZATION)).
       filter(_.startsWith(FirebaseAuthRequestFilter.BearerPrefix)).
       map(_.substring(FirebaseAuthRequestFilter.Bearer.length).trim).
       fold[Try[String]](Failure(new NotAuthorizedException("Authorization header must be provided")))(Success(_)).
-      flatMap(validationToken).
-      fold[Unit]({
-      case e: NotAuthorizedException => requestContext.abortWith(e.getResponse)
-      case e => throw e
-    }, token => setUserPrincipalName(requestContext, token.getUid))
+      flatMap(validationToken).get
+
+    setUserPrincipalName(requestContext, token.getUid)
   }
 
   def validationToken(token: String): Try[FirebaseToken] = {

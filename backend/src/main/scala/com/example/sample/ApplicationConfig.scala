@@ -8,5 +8,6 @@ import org.glassfish.jersey.server.ResourceConfig
   */
 @ApplicationPath("")
 class ApplicationConfig extends ResourceConfig {
-  packages(this.getClass.getPackage.getName)
+  packages(this.getClass.getPackage.getName,
+    "com.fasterxml.jackson.jaxrs")
 }
