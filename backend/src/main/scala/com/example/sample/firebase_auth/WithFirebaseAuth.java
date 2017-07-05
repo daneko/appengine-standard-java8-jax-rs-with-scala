@@ -1,4 +1,4 @@
-package com.example.sample;
+package com.example.sample.firebase_auth;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

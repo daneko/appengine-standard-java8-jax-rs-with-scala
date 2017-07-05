@@ -1,4 +1,4 @@
-package com.example.sample
+package com.example.sample.json
 
 import javax.ws.rs._
 import javax.ws.rs.core.MediaType
@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
   * https://www.mkyong.com/webservices/jax-rs/jax-rs-queryparam-example/
   */
 @Path("hello_json")
-class HelloJsonResource {
+class JsonResource {
 
   /*
    * curl http://localhost:8080/hello_json/hoge?q=hoge
@@ -18,8 +18,8 @@ class HelloJsonResource {
   @Path("{path}")
   @Produces(Array(MediaType.APPLICATION_JSON))
   def json(@PathParam("path") path: String,
-           @DefaultValue("default") @QueryParam("q") query: String): HelloJsonResponseBody = {
-    HelloJsonResponseBody(path, query)
+           @DefaultValue("default") @QueryParam("q") query: String): JsonResponseBody = {
+    JsonResponseBody(path, query)
   }
 
   /*
@@ -49,4 +49,4 @@ case class RequestBody(a: Int, b: String)
  * JsonIgnorePropertiesで未知のPropertiesが無視できない…
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-case class HelloJsonResponseBody(path: String, query: String)
+case class JsonResponseBody(path: String, query: String)

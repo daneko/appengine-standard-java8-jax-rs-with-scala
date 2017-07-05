@@ -1,4 +1,4 @@
-package com.example.sample
+package com.example.sample.json
 
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.ext.{ContextResolver, Provider}

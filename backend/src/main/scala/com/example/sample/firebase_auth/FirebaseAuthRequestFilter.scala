@@ -1,4 +1,4 @@
-package com.example.sample
+package com.example.sample.firebase_auth
 
 import java.security.Principal
 import java.util.concurrent.ExecutionException
@@ -9,6 +9,7 @@ import javax.ws.rs.core.{HttpHeaders, SecurityContext}
 import javax.ws.rs.ext.Provider
 import javax.ws.rs.{NotAuthorizedException, Priorities}
 
+import WithFirebaseAuth
 import com.google.firebase.auth.{FirebaseAuth, FirebaseToken}
 import com.google.firebase.tasks.Tasks
 

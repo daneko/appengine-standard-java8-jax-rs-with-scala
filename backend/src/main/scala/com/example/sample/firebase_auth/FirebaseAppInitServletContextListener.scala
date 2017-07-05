@@ -1,4 +1,4 @@
-package com.example.sample
+package com.example.sample.firebase_auth
 
 import java.util.logging.{Level, Logger}
 import javax.servlet.annotation.WebListener
@@ -20,8 +20,8 @@ import com.google.firebase.{FirebaseApp, FirebaseOptions}
   * これは単にサンプルなのでWEB-INF以下に配置している＆確認終わったら再発行するから良いけど…
   */
 @WebListener
-class HelloServletContextListener extends ServletContextListener {
-  val logger = Logger.getLogger(classOf[HelloServletContextListener].getName)
+class FirebaseAppInitServletContextListener extends ServletContextListener {
+  val logger = Logger.getLogger(classOf[FirebaseAppInitServletContextListener].getName)
 
   override def contextDestroyed(sce: ServletContextEvent): Unit = {
     logger.log(Level.INFO, "contextDestroyed")

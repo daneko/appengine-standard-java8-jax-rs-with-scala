@@ -1,4 +1,4 @@
-package com.example.sample
+package com.example.sample.exception_mapper
 
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.Response.{Status, StatusType}
@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming
  * おそらくReaderInterceptor（エンティティの加工時）でThrowされたやつがだめ？？
  */
 @Provider
-class HelloExceptionMapper(@Context private val uriInfo: UriInfo) extends ExceptionMapper[Throwable] {
+class JsonResponseBodyExceptionMapper(@Context private val uriInfo: UriInfo) extends ExceptionMapper[Throwable] {
 
 
   override def toResponse(exception: Throwable): Response = {

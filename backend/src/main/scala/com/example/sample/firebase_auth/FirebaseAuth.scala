@@ -1,13 +1,14 @@
-package com.example.sample
+package com.example.sample.firebase_auth
 
 import java.util.logging.{Level, Logger}
 import javax.ws.rs.core.{Context, SecurityContext}
 import javax.ws.rs.{GET, Path}
 
-@Path("firebase")
-class HelloFirebaseAuth {
 
-  val logger = Logger.getLogger(classOf[HelloFirebaseAuth].getName)
+@Path("firebase")
+class FirebaseAuth {
+
+  val logger = Logger.getLogger(classOf[FirebaseAuth].getName)
 
   @WithFirebaseAuth
   @GET
