@@ -3,6 +3,7 @@
     <service>hello-jaxrs</service>
     <runtime>java8</runtime>
     <threadsafe>true</threadsafe>
+    <warmup-requests-enabled>true</warmup-requests-enabled>
 
     <automatic-scaling>
         <max-concurrent-requests>80</max-concurrent-requests>
