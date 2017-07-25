@@ -3,6 +3,9 @@
     <service>hello-jaxrs</service>
     <runtime>java8</runtime>
     <threadsafe>true</threadsafe>
+    <inbound-services>
+        <service>warmup</service>
+    </inbound-services>
     <warmup-requests-enabled>true</warmup-requests-enabled>
 
     <automatic-scaling>

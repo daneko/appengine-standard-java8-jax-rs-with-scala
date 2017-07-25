@@ -5,6 +5,10 @@
     <threadsafe>true</threadsafe>
     <warmup-requests-enabled>true</warmup-requests-enabled>
 
+    <inbound-services>
+        <service>warmup</service>
+    </inbound-services>
+
     <automatic-scaling>
         <max-concurrent-requests>80</max-concurrent-requests>
         <max-pending-latency>15s</max-pending-latency>
