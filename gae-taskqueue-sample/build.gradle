@@ -1,0 +1,25 @@
+// for tracking
+def currentTimeStamp = new Date().format('yyyyMMdd-HHmmss')
+
+ext {
+    appengine = [
+            projectId : "gae-taskqueue-sample",
+            timeStamp : currentTimeStamp
+    ]
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.google.cloud.tools:appengine-gradle-plugin:1.3.2'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}

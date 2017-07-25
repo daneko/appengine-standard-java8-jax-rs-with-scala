@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<queue-entries>
+    <queue>
+        <name>worker-queue</name>
+        <target>worker</target>
+        <rate>1/s</rate>
+        <retry-parameters>
+            <task-retry-limit>3</task-retry-limit>
+        </retry-parameters>
+    </queue>
+    <queue>
+        <name>local-queue</name>
+        <rate>1/s</rate>
+        <retry-parameters>
+            <task-retry-limit>3</task-retry-limit>
+        </retry-parameters>
+    </queue>
+</queue-entries>

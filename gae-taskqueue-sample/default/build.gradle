@@ -1,0 +1,39 @@
+apply plugin: 'scala'
+apply plugin: 'war'
+apply plugin: 'com.google.cloud.tools.appengine-standard'
+
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.12.2'
+
+    compile 'com.google.appengine:appengine-api-1.0-sdk:1.9.54'
+    compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.25.1'
+/*
+org.glassfish.jersey.message.internal.WriterInterceptorExecutor$TerminalWriterInterceptor aroundWriteTo
+SEVERE: MessageBodyWriter not found for media type=application/json, type=class com.example.sample.HelloJsonResource$HelloJsonResponseBody, genericType=class com.example.sample.HelloJsonResource$HelloJsonResponseBody.
+*/
+    runtime 'org.glassfish.jersey.media:jersey-media-json-jackson:2.25.1'
+
+    compile 'com.fasterxml.jackson.module:jackson-module-scala_2.12:2.8.9'
+
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+// for tracking
+def currentTimeStamp = new Date().format('yyyyMMdd-HHmmss')
+
+appengine {
+    run {
+
+    }
+    tools {
+        // configure the Cloud Sdk tooling
+    }
+    stage {
+        // configure staging for deployment
+    }
+    deploy {
+        project = rootProject.ext.appengine.projectId
+        version = rootProject.ext.appengine.timeStamp
+    }
+}
