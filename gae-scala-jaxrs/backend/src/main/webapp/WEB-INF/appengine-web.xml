@@ -13,4 +13,7 @@
         <max-pending-latency>15s</max-pending-latency>
         <min-pending-latency>3s</min-pending-latency>
     </automatic-scaling>
+    <system-properties>
+        <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+    </system-properties>
 </appengine-web-app>
