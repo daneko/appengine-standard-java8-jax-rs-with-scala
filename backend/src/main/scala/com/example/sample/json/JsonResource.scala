@@ -30,6 +30,8 @@ class JsonResource {
    * Unrecognized field "c" (class com.example.sample.RequestBody), not marked as ignorable (2 known properties: "a", "b"])
    *  at [Source: org.glassfish.jersey.message.internal.ReaderInterceptorExecutor$UnCloseableInputStream@155a1984; line: 1, column: 20] (through reference chain: com.example.sample.RequestBody["c"])%
    *
+   * 無視したければAnnotation付け忘れんなよ
+   *
    */
   @POST
   @Consumes(Array(MediaType.APPLICATION_JSON))
@@ -43,10 +45,8 @@ class JsonResource {
  *  at [Source: org.glassfish.jersey.message.internal.ReaderInterceptorExecutor$UnCloseableInputStream@ee62f0a; line: 1, column: 2]
  *  とでるのでここにおいている
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 case class RequestBody(a: Int, b: String)
 
-/*
- * JsonIgnorePropertiesで未知のPropertiesが無視できない…
- */
 @JsonIgnoreProperties(ignoreUnknown = true)
 case class JsonResponseBody(path: String, query: String)
